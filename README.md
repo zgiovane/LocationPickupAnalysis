@@ -38,13 +38,15 @@ To use the Hotspot Analysis application, follow these steps:
    - Modify the `Entrance.scala` file in the `cse512` package to specify your group name in the `appName` field.
    - Compile and run the application using the following command:
      ```
-     spark-submit --class cse512.Entrance <path-to-jar-file> <query-name> <query-parameters> <output-path>
+     spark-submit --class cse512.Entrance <path-to-jar-file> <output-path> <query-name> <query-parameters>
      ```
+     - `<output-path>`: Specify the path where the output CSV file will be saved.
+        > Example output path: test\output
      - `<query-name>`: Specify either `hotzoneanalysis` or `hotcellanalysis`.
      - `<query-parameters>`: Provide the necessary parameters for the chosen query.
-     - `<output-path>`: Specify the path where the output CSV file will be saved.
+        > Example query parameter: src\resources\point-hotzone.csv src\resources\zone-hotzone.csv 
 
 4. **Interpret the results**:
    - The output CSV file will contain the results of the analysis.
    - For `hotzoneanalysis`, the output will include rectangles and the count of points within each rectangle.
-   - For `hotcellanalysis`, the output will include the top 50 hottest cells based on the Geis-Ord statistic.
+   - For `hotcellanalysis`, the output will include the top 50 hottest cells based on the Getis-Ord statistic.
