@@ -50,3 +50,5 @@ To use the Hotspot Analysis application, follow these steps:
    - The output CSV file will contain the results of the analysis.
    - For `hotzoneanalysis`, the output will include rectangles and the count of points within each rectangle.
    - For `hotcellanalysis`, the output will include the top 50 hottest cells based on the Getis-Ord statistic.
+   - The figure below is an output from the `hotcellanalysis` with the first 25 rows
+<br>![](HotSpotAnalysisTestOutput.png)
