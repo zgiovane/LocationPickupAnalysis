@@ -8,7 +8,7 @@ The Hotspot Analysis application is designed to analyze large-scale geospatial d
 
 1. **Hot Zone Analysis**: This feature identifies hot zones within a given geographic area based on the density of points falling within specified rectangles.
 
-2. **Hot Cell Analysis**: This functionality calculates the Geis-Ord statistic for each cell in a three-dimensional space, helping to identify statistically significant hot cells.
+2. **Hot Cell Analysis**: This functionality calculates the Getis-Ord statistic for each cell in a three-dimensional space, helping to identify statistically significant hot cells.
 
 ### Requirements
 To run the Hotspot Analysis application, ensure that you have the following technologies installed:
