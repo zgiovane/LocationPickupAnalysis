@@ -31,7 +31,7 @@ To use the Hotspot Analysis application, follow these steps:
 
 2. **Clone the repository**:
    ```
-   git clone <repository-url>
+   git clone https://github.com/zgiovane/LocationPickupAnalysis.git
    ```
 
 3. **Run the application**:
