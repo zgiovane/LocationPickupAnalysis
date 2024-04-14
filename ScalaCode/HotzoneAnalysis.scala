@@ -5,13 +5,16 @@ import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 
 object HotzoneAnalysis {
 
+  // Set logging levels to WARN
   Logger.getLogger("org.spark_project").setLevel(Level.WARN)
   Logger.getLogger("org.apache").setLevel(Level.WARN)
   Logger.getLogger("akka").setLevel(Level.WARN)
   Logger.getLogger("com").setLevel(Level.WARN)
 
+  // Method to run Hot Zone Analysis
   def runHotZoneAnalysis(spark: SparkSession, pointPath: String, rectanglePath: String): DataFrame = {
 
+    // Load point data
     var pointDf = spark.read.format("com.databricks.spark.csv").option("delimiter",";").option("header","false").load(pointPath);
     pointDf.createOrReplaceTempView("point")
 
@@ -24,11 +27,12 @@ object HotzoneAnalysis {
     val rectangleDf = spark.read.format("com.databricks.spark.csv").option("delimiter","\t").option("header","false").load(rectanglePath);
     rectangleDf.createOrReplaceTempView("rectangle")
 
-    // Join two datasets
+    // Join point and rectangle datasets
     spark.udf.register("ST_Contains",(queryRectangle:String, pointString:String)=>(HotzoneUtils.ST_Contains(queryRectangle, pointString)))
     val joinDf = spark.sql("select rectangle._c0 as rectangle, point._c5 as point from rectangle,point where ST_Contains(rectangle._c0,point._c5)")
     joinDf.createOrReplaceTempView("joinResult")
 
+    // Group by rectangle and count points
     val resultDf = joinDf.groupBy("rectangle").count().coalesce(1).sort("rectangle")
 
     return resultDf
